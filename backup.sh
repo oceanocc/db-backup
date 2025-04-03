@@ -7,7 +7,7 @@ source .env;
 BACKUP_FILE="${DB_NAME}_$(date +%Y%m%d%H%M%S).gzip"
 
 # Realizar el respaldo y comprimirlo con gzip
-mysqldump -h $DB_HOST -u $DB_USER -p${DB_PASSWORD} $DB_NAME | gzip > "$BACKUP_DIR/$BACKUP_FILE"
+mysqldump -h $DB_HOST -u $DB_USER -p${DB_PASSWORD} --skip_ssl $DB_NAME | gzip > "$BACKUP_DIR/$BACKUP_FILE"
 
 # Verificar si el respaldo se realizó correctamente
 if [ $? -eq 0 ]; then
